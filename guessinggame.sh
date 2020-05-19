@@ -2,8 +2,7 @@
 # File: guessinggame.sh
 
 file_counter(){
-	num=($(find * -type f))		# create array of all files (excludes directories)
-	return ${#num[*]}			# return length of array (number of files)
+	return $(ls -la | egrep -v ^d | tail -n +2 | wc -l) # Counts all files, excluding directories. Tail skips the first line of output containing total, so wc is accurate.
 }
 
 echo "How many files are in the current directory $(pwd)?"
